@@ -846,8 +846,11 @@ func (sdb *IntraBlockState) SetTxContext(ti int, blockNum uint64) {
 		panic(err)
 	}
 	sdb.txIndex = ti
-	sdb.blockNum = blockNum
-	sdb.accessList = newAccessList()
+
+	if blockNum == 0 {
+		sdb.blockNum = blockNum
+		sdb.accessList = newAccessList()
+	}
 }
 
 // no not lock
